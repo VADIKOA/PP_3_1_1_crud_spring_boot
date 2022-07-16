@@ -1,35 +1,15 @@
 package ru.ageevvo.crud_spring_boot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ru.ageevvo.crud_spring_boot.models.User;
-import ru.ageevvo.crud_spring_boot.repository.UserRepository;
 
 import java.util.List;
 
-@Service
-public class UserService {
+public interface UserService {
+    User findById(Long id);
 
-    private final UserRepository userRepository;
+    List<User> findAll();
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+    void saveUser(User user);
 
-    public User findById(Long id) {
-        return userRepository.getReferenceById(id);
-    }
-
-    public List<User>  findAll() {
-        return userRepository.findAll();
-    }
-
-    public void saveUser(User user){
-        userRepository.save(user);
-    }
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
-    }
+    void deleteUser(Long id);
 }
